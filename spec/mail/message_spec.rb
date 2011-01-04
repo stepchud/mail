@@ -176,13 +176,13 @@ describe Mail::Message do
   
     it "should give the header class the header to parse" do
       header = Mail::Header.new("To: mikel\r\nFrom: bob\r\nSubject: Hello!")
-      Mail::Header.should_receive(:new).with("To: mikel\r\nFrom: bob\r\nSubject: Hello!", 'UTF-8').and_return(header)
+      Mail::Header.should_receive(:new).with("To: mikel\r\nFrom: bob\r\nSubject: Hello!", 'utf-8').and_return(header)
       mail = Mail::Message.new(basic_email)
     end
 
     it "should give the header class the header to parse even if there is no body" do
       header = Mail::Header.new("To: mikel\r\nFrom: bob\r\nSubject: Hello!")
-      Mail::Header.should_receive(:new).with("To: mikel\r\nFrom: bob\r\nSubject: Hello!", 'UTF-8').and_return(header)
+      Mail::Header.should_receive(:new).with("To: mikel\r\nFrom: bob\r\nSubject: Hello!", 'utf-8').and_return(header)
       mail = Mail::Message.new("To: mikel\r\nFrom: bob\r\nSubject: Hello!")
     end
   
@@ -201,7 +201,7 @@ describe Mail::Message do
     it "should give the header the part before the line without spaces and the body the part without" do
       header = Mail::Header.new("To: mikel")
       body = Mail::Body.new("G'Day!")
-      Mail::Header.should_receive(:new).with("To: mikel", 'UTF-8').and_return(header)
+      Mail::Header.should_receive(:new).with("To: mikel", 'utf-8').and_return(header)
       Mail::Body.should_receive(:new).with("G'Day!").and_return(body)
       mail = Mail::Message.new("To: mikel\r\n\r\nG'Day!")
       mail.body #body calculates now lazy so need to ask for it
@@ -210,7 +210,7 @@ describe Mail::Message do
     it "should give allow for whitespace on the gap line between header and body" do
       header = Mail::Header.new("To: mikel")
       body = Mail::Body.new("G'Day!")
-      Mail::Header.should_receive(:new).with("To: mikel", 'UTF-8').and_return(header)
+      Mail::Header.should_receive(:new).with("To: mikel", 'utf-8').and_return(header)
       Mail::Body.should_receive(:new).with("G'Day!").and_return(body)
       mail = Mail::Message.new("To: mikel\r\n   		  \r\nG'Day!")
       mail.body #body calculates now lazy so need to ask for it
@@ -398,7 +398,7 @@ describe Mail::Message do
           sender        'mikel@sender.lindsaar.net'
           subject       'Hello there Mikel'
           to            'mikel@to.lindsaar.net'
-          content_type  'text/plain; charset=UTF-8'
+          content_type  'text/plain; charset=utf-8'
           content_transfer_encoding '7bit'
           content_description       'This is a test'
           content_disposition       'attachment; filename=File'
@@ -428,7 +428,7 @@ describe Mail::Message do
         message.sender.should        == 'mikel@sender.lindsaar.net'
         message.subject.should       == 'Hello there Mikel'
         message.to.should            == ['mikel@to.lindsaar.net']
-        message.content_type.should              == 'text/plain; charset=UTF-8'
+        message.content_type.should              == 'text/plain; charset=utf-8'
         message.content_transfer_encoding.should == '7bit'
         message.content_description.should       == 'This is a test'
         message.content_disposition.should       == 'attachment; filename=File'
@@ -460,7 +460,7 @@ describe Mail::Message do
         message.sender =        'mikel@sender.lindsaar.net'
         message.subject =       'Hello there Mikel'
         message.to =            'mikel@to.lindsaar.net'
-        message.content_type =  'text/plain; charset=UTF-8'
+        message.content_type =  'text/plain; charset=utf-8'
         message.content_transfer_encoding = '7bit'
         message.content_description =       'This is a test'
         message.content_disposition =       'attachment; filename=File'
@@ -489,7 +489,7 @@ describe Mail::Message do
         message.sender.should        == 'mikel@sender.lindsaar.net'
         message.subject.should       == 'Hello there Mikel'
         message.to.should            == ['mikel@to.lindsaar.net']
-        message.content_type.should              == 'text/plain; charset=UTF-8'
+        message.content_type.should              == 'text/plain; charset=utf-8'
         message.content_transfer_encoding.should == '7bit'
         message.content_description.should       == 'This is a test'
         message.content_disposition.should       == 'attachment; filename=File'
@@ -521,7 +521,7 @@ describe Mail::Message do
         message[:sender] =        'mikel@sender.lindsaar.net'
         message[:subject] =       'Hello there Mikel'
         message[:to] =            'mikel@to.lindsaar.net'
-        message[:content_type] =  'text/plain; charset=UTF-8'
+        message[:content_type] =  'text/plain; charset=utf-8'
         message[:content_transfer_encoding] = '7bit'
         message[:content_description] =       'This is a test'
         message[:content_disposition] =       'attachment; filename=File'
@@ -550,7 +550,7 @@ describe Mail::Message do
         message.sender.should        == 'mikel@sender.lindsaar.net'
         message.subject.should       == 'Hello there Mikel'
         message.to.should            == ['mikel@to.lindsaar.net']
-        message.content_type.should              == 'text/plain; charset=UTF-8'
+        message.content_type.should              == 'text/plain; charset=utf-8'
         message.content_transfer_encoding.should == '7bit'
         message.content_description.should       == 'This is a test'
         message.content_disposition.should       == 'attachment; filename=File'
@@ -582,7 +582,7 @@ describe Mail::Message do
         message['sender'] =        'mikel@sender.lindsaar.net'
         message['subject'] =       'Hello there Mikel'
         message['to'] =            'mikel@to.lindsaar.net'
-        message['content_type'] =  'text/plain; charset=UTF-8'
+        message['content_type'] =  'text/plain; charset=utf-8'
         message['content_transfer_encoding'] = '7bit'
         message['content_description'] =       'This is a test'
         message['content_disposition'] =       'attachment; filename=File'
@@ -611,7 +611,7 @@ describe Mail::Message do
         message.sender.should        == 'mikel@sender.lindsaar.net'
         message.subject.should       == 'Hello there Mikel'
         message.to.should            == ['mikel@to.lindsaar.net']
-        message.content_type.should              == 'text/plain; charset=UTF-8'
+        message.content_type.should              == 'text/plain; charset=utf-8'
         message.content_transfer_encoding.should == '7bit'
         message.content_description.should       == 'This is a test'
         message.content_disposition.should       == 'attachment; filename=File'
@@ -643,7 +643,7 @@ describe Mail::Message do
           :sender =>        'mikel@sender.lindsaar.net',
           :subject =>       'Hello there Mikel',
           :to =>            'mikel@to.lindsaar.net',
-          :content_type =>  'text/plain; charset=UTF-8',
+          :content_type =>  'text/plain; charset=utf-8',
           :content_transfer_encoding => '7bit',
           :content_description =>       'This is a test',
           :content_disposition =>       'attachment; filename=File',
@@ -673,7 +673,7 @@ describe Mail::Message do
         message.sender.should        == 'mikel@sender.lindsaar.net'
         message.subject.should       == 'Hello there Mikel'
         message.to.should            == ['mikel@to.lindsaar.net']
-        message.content_type.should              == 'text/plain; charset=UTF-8'
+        message.content_type.should              == 'text/plain; charset=utf-8'
         message.content_transfer_encoding.should == '7bit'
         message.content_description.should       == 'This is a test'
         message.content_disposition.should       == 'attachment; filename=File'
@@ -705,7 +705,7 @@ describe Mail::Message do
           'sender' =>        'mikel@sender.lindsaar.net',
           'subject' =>       'Hello there Mikel',
           'to' =>            'mikel@to.lindsaar.net',
-          'content_type' =>  'text/plain; charset=UTF-8',
+          'content_type' =>  'text/plain; charset=utf-8',
           'content_transfer_encoding' => '7bit',
           'content_description' =>       'This is a test',
           'content_disposition' =>       'attachment; filename=File',
@@ -735,7 +735,7 @@ describe Mail::Message do
         message.sender.should        == 'mikel@sender.lindsaar.net'
         message.subject.should       == 'Hello there Mikel'
         message.to.should            == ['mikel@to.lindsaar.net']
-        message.content_type.should              == 'text/plain; charset=UTF-8'
+        message.content_type.should              == 'text/plain; charset=utf-8'
         message.content_transfer_encoding.should == '7bit'
         message.content_description.should       == 'This is a test'
         message.content_disposition.should       == 'attachment; filename=File'
@@ -1014,23 +1014,23 @@ describe Mail::Message do
           mail.to_s =~ %r{Content-Type: text/plain;\r\n}
         end
 
-        it "should raise a warning if there is no content type and there is non ascii chars and default to text/plain, UTF-8" do
+        it "should raise a warning if there is no content type and there is non ascii chars and default to text/plain, utf-8" do
           body = "This is NOT plain text ASCII　− かきくけこ"
           mail = Mail.new
           mail.body = body
           mail.content_transfer_encoding = "8bit"
-          STDERR.should_receive(:puts).with(/Non US-ASCII detected and no charset defined.\nDefaulting to UTF-8, set your own if this is incorrect./m)
-          mail.to_s =~ %r{Content-Type: text/plain; charset=UTF-8}
+          STDERR.should_receive(:puts).with(/Non US-ASCII detected and no charset defined.\nDefaulting to utf-8, set your own if this is incorrect./m)
+          mail.to_s =~ %r{Content-Type: text/plain; charset=utf-8}
         end
 
-        it "should raise a warning if there is no charset parameter and there is non ascii chars and default to text/plain, UTF-8" do
+        it "should raise a warning if there is no charset parameter and there is non ascii chars and default to text/plain, utf-8" do
           body = "This is NOT plain text ASCII　− かきくけこ"
           mail = Mail.new
           mail.body = body
           mail.content_type = "text/plain"
           mail.content_transfer_encoding = "8bit"
-          STDERR.should_receive(:puts).with(/Non US-ASCII detected and no charset defined.\nDefaulting to UTF-8, set your own if this is incorrect./m)
-          mail.to_s =~ %r{Content-Type: text/plain; charset=UTF-8}
+          STDERR.should_receive(:puts).with(/Non US-ASCII detected and no charset defined.\nDefaulting to utf-8, set your own if this is incorrect./m)
+          mail.to_s =~ %r{Content-Type: text/plain; charset=utf-8}
         end
 
         it "should not raise a warning if there is a charset defined and there is non ascii chars" do
@@ -1038,7 +1038,7 @@ describe Mail::Message do
           mail = Mail.new
           mail.body = body
           mail.content_transfer_encoding = "8bit"
-          mail.content_type = "text/plain; charset=UTF-8"
+          mail.content_type = "text/plain; charset=utf-8"
           STDERR.should_not_receive(:puts)
           mail.to_s 
         end
@@ -1052,14 +1052,14 @@ describe Mail::Message do
         
         it "should be able to set a content type with an array and hash with a non-usascii field" do
           mail = Mail.new
-          mail.content_type = ["text", "plain", { "charset" => 'UTF-8' }]
-          mail[:content_type].encoded.should == %Q[Content-Type: text/plain;\r\n\scharset=UTF-8\r\n]
-          mail.content_type_parameters.should == {"charset" => "UTF-8"}
+          mail.content_type = ["text", "plain", { "charset" => 'utf-8' }]
+          mail[:content_type].encoded.should == %Q[Content-Type: text/plain;\r\n\scharset=utf-8\r\n]
+          mail.content_type_parameters.should == {"charset" => "utf-8"}
         end
 
         it "should allow us to specify a content type in a block" do
-          mail = Mail.new { content_type ["text", "plain", { "charset" => "UTF-8" }] }
-          mail.content_type_parameters.should == {"charset" => "UTF-8"}
+          mail = Mail.new { content_type ["text", "plain", { "charset" => "utf-8" }] }
+          mail.content_type_parameters.should == {"charset" => "utf-8"}
         end
         
       end
@@ -1076,7 +1076,7 @@ describe Mail::Message do
         it "should use QP transfer encoding for 8bit text with only a few 8bit characters" do
           body = "Maxfeldstraße 5, 90409 Nürnberg"
           mail = Mail.new
-          mail.charset = "UTF-8"
+          mail.charset = "utf-8"
           mail.body = body
           mail.to_s.should =~ %r{Content-Transfer-Encoding: quoted-printable}
         end
@@ -1084,7 +1084,7 @@ describe Mail::Message do
         it "should use base64 transfer encoding for 8-bit text with lots of 8bit characters" do
           body = "This is NOT plain text ASCII　− かきくけこ"
           mail = Mail.new
-          mail.charset = "UTF-8"
+          mail.charset = "utf-8"
           mail.body = body
           mail.content_type = "text/plain; charset=utf-8"
           mail.should be_has_content_type
@@ -1095,7 +1095,7 @@ describe Mail::Message do
         it "should not use 8bit transfer encoding when 8bit is allowed" do
           body = "This is NOT plain text ASCII　− かきくけこ"
           mail = Mail.new
-          mail.charset = "UTF-8"
+          mail.charset = "utf-8"
           mail.body = body
           mail.content_type = "text/plain; charset=utf-8"
           mail.transport_encoding = "8bit"
@@ -1134,7 +1134,7 @@ describe Mail::Message do
           body 'This is plain text'
         end
         html_part do
-          content_type 'text/html; charset=UTF-8'
+          content_type 'text/html; charset=utf-8'
           body '<h1>This is HTML</h1>'
         end
       end

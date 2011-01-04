@@ -1,6 +1,7 @@
+# encoding: utf-8
+
 require 'mail/fields'
 
-# encoding: utf-8
 module Mail
   # Provides a single class to call to create a new structured or unstructured
   # field.  Works out per RFC what field of field it is being given and returns
@@ -66,7 +67,7 @@ module Mail
     # field can accept an array with the type and a hash of 
     # parameters:
     # 
-    #  Field.new('content-type', ['text', 'plain', {:charset => 'UTF-8'}])
+    #  Field.new('content-type', ['text', 'plain', {:charset => 'utf-8'}])
     def initialize(name, value = nil, charset = 'utf-8')
       case
       when name =~ /:/ && value.blank?   # Field.new("field-name: field data")

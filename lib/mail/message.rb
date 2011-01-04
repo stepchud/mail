@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 module Mail
   # The Message class provides a single point of access to all things to do with an
   # email message.
@@ -104,7 +105,7 @@ module Mail
       @html_part = nil
       @errors = nil
       @header = nil
-      @charset = 'UTF-8'
+      @charset = 'utf-8'
       @defaulted_charset = true
 
       @perform_deliveries = true
@@ -1027,7 +1028,7 @@ module Mail
     #
     #  mail.subject = "G'Day mate"
     #  mail.subject #=> "G'Day mate"
-    #  mail.subject = '=?UTF-8?Q?This_is_=E3=81=82_string?='
+    #  mail.subject = '=?utf-8?Q?This_is_=E3=81=82_string?='
     #  mail.subject #=> "This is あ string"
     #
     # Also allows you to set the value by passing a value as a parameter
@@ -1044,7 +1045,7 @@ module Mail
     #
     # Example:
     #
-    #  mail.subject = '=?UTF-8?Q?This_is_=E3=81=82_string?='
+    #  mail.subject = '=?utf-8?Q?This_is_=E3=81=82_string?='
     #  mail.subject #=> "This is あ string"
     def subject=( val )
       header[:subject] = val
@@ -1377,7 +1378,7 @@ module Mail
         # Only give a warning if this isn't an attachment, has non US-ASCII and the user
         # has not specified an encoding explicitly.
         if @defaulted_charset && body.raw_source.not_ascii_only? && !self.attachment?
-          warning = "Non US-ASCII detected and no charset defined.\nDefaulting to UTF-8, set your own if this is incorrect.\n"
+          warning = "Non US-ASCII detected and no charset defined.\nDefaulting to utf-8, set your own if this is incorrect.\n"
           STDERR.puts(warning)
         end
         header[:content_type].parameters['charset'] = @charset

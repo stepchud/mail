@@ -202,8 +202,8 @@ module Mail
     #
     # Example:
     # 
-    #  Encodings.b_value_encode('This is あ string', 'UTF-8') 
-    #  #=> "=?UTF-8?B?VGhpcyBpcyDjgYIgc3RyaW5n?="
+    #  Encodings.b_value_encode('This is あ string', 'utf-8') 
+    #  #=> "=?utf-8?B?VGhpcyBpcyDjgYIgc3RyaW5n?="
     def Encodings.b_value_encode(str, encoding = nil)
       return str if str.to_s.ascii_only?
       string, encoding = RubyVer.b_value_encode(str, encoding)
@@ -217,8 +217,8 @@ module Mail
     #
     # Example:
     # 
-    #  Encodings.q_value_encode('This is あ string', 'UTF-8') 
-    #  #=> "=?UTF-8?Q?This_is_=E3=81=82_string?="
+    #  Encodings.q_value_encode('This is あ string', 'utf-8') 
+    #  #=> "=?utf-8?Q?This_is_=E3=81=82_string?="
     def Encodings.q_value_encode(str, encoding = nil)
       return str if str.to_s.ascii_only?
       string, encoding = RubyVer.q_value_encode(str, encoding)
@@ -230,21 +230,21 @@ module Mail
     
     private
     
-    # Decodes a Base64 string from the "=?UTF-8?B?VGhpcyBpcyDjgYIgc3RyaW5n?=" format
+    # Decodes a Base64 string from the "=?utf-8?B?VGhpcyBpcyDjgYIgc3RyaW5n?=" format
     # 
     # Example:
     # 
-    #  Encodings.b_value_encode("=?UTF-8?B?VGhpcyBpcyDjgYIgc3RyaW5n?=") 
+    #  Encodings.b_value_encode("=?utf-8?B?VGhpcyBpcyDjgYIgc3RyaW5n?=") 
     #  #=> 'This is あ string'
     def Encodings.b_value_decode(str)
       RubyVer.b_value_decode(str)
     end
     
-    # Decodes a Quoted-Printable string from the "=?UTF-8?Q?This_is_=E3=81=82_string?=" format
+    # Decodes a Quoted-Printable string from the "=?utf-8?Q?This_is_=E3=81=82_string?=" format
     # 
     # Example:
     # 
-    #  Encodings.b_value_encode("=?UTF-8?Q?This_is_=E3=81=82_string?=") 
+    #  Encodings.b_value_encode("=?utf-8?Q?This_is_=E3=81=82_string?=") 
     #  #=> 'This is あ string'
     def Encodings.q_value_decode(str)
       RubyVer.q_value_decode(str).gsub(/_/, ' ')

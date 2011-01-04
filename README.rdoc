@@ -350,7 +350,7 @@ simple as possible.... (asking a lot from a mail library)
      body 'This is plain text'
    end
    html_part do
-     content_type 'text/html; charset=UTF-8'
+     content_type 'text/html; charset=utf-8'
      body '<h1>This is HTML</h1>'
    end
  end
@@ -381,7 +381,7 @@ so desire...
 
  This is plain text
  ----==_mimepart_4a914f0c911be_6f0f1ab8026659
- Content-Type: text/html; charset=UTF-8
+ Content-Type: text/html; charset=utf-8
  Content-ID: <4a914f12cf86_6f0f1ab802692c@baci.local.mail>
  Date: Mon, 24 Aug 2009 00:15:46 +1000
  Mime-Version: 1.0
@@ -416,7 +416,7 @@ an email, not Mail::Messages.
  end
 
  html_part = Mail::Part.new do
-   content_type 'text/html; charset=UTF-8'
+   content_type 'text/html; charset=utf-8'
    body '<h1>This is HTML</h1>'
  end
 
@@ -481,7 +481,7 @@ Of course... Mail will round trip an attachment as well
       body 'Here is the attachment you wanted'
     end
     html_part do
-      content_type 'text/html; charset=UTF-8'
+      content_type 'text/html; charset=utf-8'
       body '<h1>Funky Title</h1><p>Here is the attachment you wanted</p>'
     end
     add_file '/path/to/myfile.pdf'
