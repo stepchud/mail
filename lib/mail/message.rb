@@ -1659,7 +1659,7 @@ module Mail
     #  m.parts.first.content_type.content_type #=> 'text/plain'
     #  m.parts.last.content_type.content_type #=> 'image/png'
     #
-    # See also #attachments
+    # See also #attachments_list.rb
     def add_file(values)
       convert_to_multipart unless self.multipart? || self.body.decoded.blank?
       add_multipart_mixed_header
@@ -1667,8 +1667,10 @@ module Mail
         basename = File.basename(values)
         filedata = File.open(values, 'rb') { |f| f.read }
       else
-        basename = values[:filename]
-        filedata = values[:content] || File.open(values[:filename], 'rb') { |f| f.read }
+        basename = values.delete(:filename)
+        filedata = values[:content] || values[:data] ?
+                     values :
+                     File.open(basename, 'rb') { |f| f.read }
       end
       self.attachments[basename] = filedata
     end
