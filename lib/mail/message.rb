@@ -1609,7 +1609,7 @@ module Mail
          @text_part = Mail::Part.new('Content-Type: text/plain;')
          @text_part.body = body.decoded
          self.body << @text_part
-         add_multipart_alternate_header
+         add_multipart_mixed_header
       end
       add_boundary
       self.body << part
@@ -1875,7 +1875,7 @@ module Mail
     end
 
     def add_required_fields
-      add_multipart_mixed_header    unless !body.multipart?
+      add_multipart_mixed_header    if body.multipart?
       body = nil                    if body.nil?
       add_message_id                unless (has_message_id? || self.class == Mail::Part)
       add_date                      unless has_date?
@@ -1895,7 +1895,7 @@ module Mail
       unless body.boundary && boundary
         header['content-type'] = 'multipart/mixed' unless header['content-type']
         header['content-type'].parameters[:boundary] = ContentTypeField.generate_boundary
-        header['content_type'].parameters[:charset] = @charset
+        header['content-type'].parameters[:charset] = @charset
         body.boundary = boundary
       end
     end
@@ -1903,7 +1903,7 @@ module Mail
     def add_multipart_mixed_header
       unless header['content-type']
         header['content-type'] = ContentTypeField.with_boundary('multipart/mixed').value
-        header['content_type'].parameters[:charset] = @charset
+        header['content-type'].parameters[:charset] = @charset
         body.boundary = boundary
       end
     end
