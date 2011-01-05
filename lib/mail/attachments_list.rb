@@ -48,6 +48,10 @@ module Mail
 
         default_values[:body] = value.delete(:data) if value[:data]
 
+        if value[:disposition]
+          default_values[:content_disposition] = "#{value.delete(:disposition)}; filename=\"#{encoded_name}\""
+        end
+
         encoding = value.delete(:transfer_encoding) || value.delete(:encoding)
         if encoding
           if Mail::Encodings.defined? encoding
