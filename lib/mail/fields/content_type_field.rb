@@ -94,6 +94,10 @@ module Mail
       params.map { |k,v| "#{k}=#{Encodings.param_encode(v)}" }.join("; ")
     end
 
+    def text?
+      main_type == 'text'
+    end
+
     def filename
       case
       when parameters['filename']
