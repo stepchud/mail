@@ -73,15 +73,14 @@ module Mail
         hash = default_values
       end
 
-      if hash[:body].respond_to? :force_encoding and hash[:body].respond_to? :valid_encoding?
-        if not hash[:body].valid_encoding? and default_values[:content_transfer_encoding].downcase == "binary"
+      if hash[:body].respond_to?(:force_encoding) && hash[:body].respond_to?(:valid_encoding?)
+        if !hash[:body].valid_encoding? && default_values[:content_transfer_encoding].downcase == "binary"
           hash[:body].force_encoding("BINARY")
         end
       end
 
       attachment = Part.new(hash)
-      attachment.add_content_id(hash[:content_id])
-
+      attachment.add_content_id(hash[:content_id]) unless attachment.has_content_id?
       @parts_list << attachment
     end
 
