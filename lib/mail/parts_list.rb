@@ -33,6 +33,9 @@ module Mail
         # in the meantime, it works :)
         a_order = order.index(a[:content_type].string.downcase) || 10000
         b_order = order.index(b[:content_type].string.downcase) || 10000
+        # attachments go after the message body, even if their content_type is in the sort order
+        a_order = 10000 if a.attachment?
+        b_order = 10000 if b.attachment?
         a_order <=> b_order
       end
       self.clear
