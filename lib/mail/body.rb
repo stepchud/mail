@@ -120,13 +120,10 @@ module Mail
       @part_sort_order = order
     end
     
-    # Allows you to sort the parts according to the default sort order, or the sort order you
-    # set with :set_sort_order.
-    #
+    # Allows you to sort the parts according to the @part_sort_order
     # sort_parts! is also called from :encode, so there is no need for you to call this explicitly
     def sort_parts!
       @parts.each do |p|
-        p.body.set_sort_order(@part_sort_order)
         @parts.sort!(@part_sort_order)
         p.body.sort_parts!
       end
