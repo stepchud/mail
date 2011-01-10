@@ -1374,7 +1374,7 @@ module Mail
     #
     # Otherwise raises a warning
     def add_charset
-      if !body.empty? && header[:content_type].text?
+      if !body.empty? && header[:content_type] && header[:content_type].text?
         # Only give a warning if this isn't an attachment, has non US-ASCII and the user
         # has not specified an encoding explicitly.
         if @defaulted_charset && body.raw_source.not_ascii_only? && !self.attachment?
@@ -1943,7 +1943,12 @@ module Mail
       self.raw_source = string
       set_envelope_header
       parse_message
-      @separate_parts = multipart?
+      if multipart?
+        @separate_parts = true
+      elsif has_charset? && header[:content_type].text?
+        # on single-part messages, set the body's charset explicitly when it is defined in header
+        self.body.charset = charset
+      end
     end
 
     # Returns the filename of the attachment (if it exists) or returns nil
