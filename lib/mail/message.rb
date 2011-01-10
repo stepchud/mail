@@ -1757,6 +1757,7 @@ module Mail
     def filename
       find_attachment
     end
+    alias_method :original_filename, :filename
 
     def all_parts
       parts.map { |p| [p, p.all_parts] }.flatten
@@ -1844,7 +1845,7 @@ module Mail
        @body = Mail::Body.new(@body_raw[@body_raw_index, @body_raw.length-@body_raw_index])
        @body_raw = nil
        @body_raw_index = nil
-      separate_parts if @separate_parts
+       separate_parts if @separate_parts
 
        add_encoding_to_body
     end
