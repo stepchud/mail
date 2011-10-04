@@ -18,7 +18,9 @@ group :test do
   when RUBY_PLATFORM == 'java'
     # Skip it
   when RUBY_VERSION < '1.9'
-    gem "ruby-debug"
+    gem 'ruby-debug'
+  when RUBY_VERSION >= '1.9' && RUBY_VERSION < '2.0'
+    gem 'ruby-debug19'
   else
     # Skip it
   end
