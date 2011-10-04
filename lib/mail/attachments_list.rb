@@ -80,6 +80,8 @@ module Mail
       end
 
       attachment = Part.new(hash)
+      # remove the default charset from the body for attachments that could be binary encoded base64
+      attachment.body.charset = nil if !attachment.has_charset? and attachment.body.charset == 'US-ASCII'
       attachment.add_content_id(hash[:content_id]) unless attachment.has_content_id?
       @parts_list << attachment
     end

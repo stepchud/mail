@@ -170,7 +170,7 @@ module Mail
       else
         string = Encodings.get_encoding(encoding).decode(raw_source)
         if charset # try to encode the string if a charset was specified
-          string = string.encode(charset) rescue string
+          string = string.force_encoding(charset) rescue string
         end
         string
       end
