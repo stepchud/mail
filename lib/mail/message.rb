@@ -1389,7 +1389,7 @@ module Mail
     #
     # Otherwise raises a warning
     def add_content_transfer_encoding
-      if body.only_us_ascii?
+      if body.raw_source.ascii_only?
         header[:content_transfer_encoding] = '7bit'
       else
         warning = "Non US-ASCII detected and no content-transfer-encoding defined.\nDefaulting to 8bit, set your own if this is incorrect.\n"

@@ -1,0 +1,76 @@
+From: postmaster@test.example.com
+To: it@bar.example.com
+Date: Sat, 13 Jun 2009 00:56:17 -0500
+MIME-Version: 1.0
+Content-Type: multipart/report; report-type=delivery-status;
+	boundary="9B095B5ADSN=_01C9CF3AE6EF121000000156sage.spice.spice"
+X-DSNContext: 7ce717b1 - 1418 - 00000004 - C00402D1
+Message-ID: <S2TRqf69a0000001f@sage.example.com>
+Subject: Delivery Status Notification (Delay)
+
+This is a MIME-formatted message.  
+Portions of this message may be unreadable without a MIME-capable mail program.
+
+--9B095B5ADSN=_01C9CF3AE6EF121000000156sage.spice.spice
+Content-Type: text/plain; charset=unicode-1-1-utf-7
+
+This is an automatically generated Delivery Status Notification.
+
+THIS IS A WARNING MESSAGE ONLY.
+
+YOU DO NOT NEED TO RESEND YOUR MESSAGE.
+
+Delivery to the following recipients has been delayed.
+
+       invalidemail@example.com
+
+
+
+
+--9B095B5ADSN=_01C9CF3AE6EF121000000156sage.spice.spice
+Content-Type: message/delivery-status
+
+Reporting-MTA: dns;sage.example.com
+
+Final-Recipient: rfc822;invalidemail@example.com
+Action: delayed
+Status: 4.4.7
+Will-Retry-Until: Sun, 14 Jun 2009 12:52:51 -0500
+
+--9B095B5ADSN=_01C9CF3AE6EF121000000156sage.spice.spice
+Content-Type: message/rfc822
+
+
+Received: from 192.168.168.10 ([192.168.168.10]) by sage.example.com ([192.168.168.10]) with Microsoft Exchange Server HTTP-DAV ;
+ Sat, 13 Jun 2009 05:56:24 +0000
+Date: Sat, 13 Jun 2009 00:56:23 -0500
+From: Harold 1 <harold1@test.example.com>
+Reply-To: harold1@test.example.com
+To: postmaster@test.example.com
+Subject: Delivery Status Notification (Delay)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+
+Your ticket has been submitted.  Please reply to this email (keeping the subject intact) with any additional information or comments.
+
+Help Desk: http://sage:9675/portal/page/view-help-request/11
+Ticket: # 11
+Submitted: Jun 13, 2009 @ 12:56 am
+Summary: Delivery Status Notification (Delay)
+Status: open
+Priority: Med
+
+Description:
+----------------------------------------------------------------------------------------------------
+This is an automatically generated Delivery Status Notification.
+THIS IS A WARNING MESSAGE ONLY.
+YOU DO NOT NEED TO RESEND YOUR MESSAGE.
+Delivery to the following recipients has been delayed.
+       shadmin@example.com
+----------------------------------------------------------------------------------------------------
+This is an automated message sent from your help desk.
+
+
+--9B095B5ADSN=_01C9CF3AE6EF121000000156sage.spice.spice--
+

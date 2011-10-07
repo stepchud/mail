@@ -45,8 +45,7 @@ module Mail
           raise "You can only assign a string or an object that responds_to? :join or :to_s to a body."
         end
       end
-      @encoding = (only_us_ascii? ? '7bit' : '8bit')
-      set_charset
+      @encoding = (raw_source.ascii_only? ? '7bit' : '8bit')
     end
     
     # Matches this body with another body.  Also matches the decoded value of this
@@ -170,7 +169,7 @@ module Mail
       else
         string = Encodings.get_encoding(encoding).decode(raw_source)
         if charset # try to encode the string if a charset was specified
-          string = string.force_encoding(charset) rescue string
+          string.force_encoding(charset) rescue nil
         end
         string
       end
@@ -261,11 +260,6 @@ module Mail
       self
     end
     
-    def only_us_ascii?
-      raw_source.each_byte {|b| return false if (b == 0 || b > 127)}
-      true
-    end
-    
     def empty?
       !!raw_source.to_s.empty?
     end
@@ -278,10 +272,6 @@ module Mail
     
     def end_boundary
       "\r\n\r\n--#{boundary}--\r\n"
-    end
-    
-    def set_charset
-      only_us_ascii? ? @charset = 'US-ASCII' : @charset = nil
     end
   end
 end

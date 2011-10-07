@@ -61,11 +61,6 @@ describe Mail::Body do
       body.encoded.should == 'this is some text'
     end
     
-    it "should set it's own encoding to us_ascii if it is ascii only body" do
-      body = Mail::Body.new('This is some text')
-      body.charset.should == 'US-ASCII'
-    end
-    
     it "should allow you to set it's encoding" do
       body = Mail::Body.new('')
       body.charset = 'UTF-8'
@@ -199,23 +194,6 @@ describe Mail::Body do
       new_body.preamble.should == "this is some text"
     end
 
-  end
-
-  describe "detecting non ascii" do
-    it "should say an empty string is all ascii" do
-      body = Mail::Body.new
-      body.should be_only_us_ascii
-    end
-
-    it "should say if a body is ascii" do
-      body = Mail::Body.new('This is ASCII')
-      body.should be_only_us_ascii
-    end
-
-    it "should say if a body is not ascii" do
-      body = Mail::Body.new("This is NOT plain text ASCII　− かきくけこ")
-      body.should_not be_only_us_ascii
-    end
   end
 
   describe "adding parts" do

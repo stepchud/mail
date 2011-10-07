@@ -42,7 +42,7 @@ Spec::Rake::SpecTask.new(:spec) do |t|
   require 'ruby-debug'
   Debugger.start
   Debugger.settings[:autoeval] = true if Debugger.respond_to?(:settings)
-  puts 'Started in debug mode for you!!! Pls be careful thx.'
+  puts 'debugger started.'
   t.warning = true
   t.spec_files = FileList["#{File.dirname(__FILE__)}/spec/**/*_spec.rb"]
   t.spec_opts = %w(--backtrace --diff --color --debugger)

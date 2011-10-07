@@ -253,6 +253,14 @@ describe "Test emails" do
 
   describe "from the wild" do
 
+    describe "handling unsupported charsets" do
+      it "should not raise an exception on utf-7 messages" do
+        @message = Mail::Message.new(File.read(fixture('emails', 'error_emails', 'undelivered_test_exchange.eml')))
+        doing { @message.encoded }.should_not raise_error
+        @message.body.decoded.should =~ /THIS IS A WARNING MESSAGE ONLY/
+      end
+    end
+
     describe "raw_email_encoded_stack_level_too_deep.eml" do
       before(:each) do
         @message = Mail::Message.new(File.read(fixture('emails', 'mime_emails', 'raw_email_encoded_stack_level_too_deep.eml')))
